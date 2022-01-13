@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de ingreso de marcas nuevas</title>
+</head>
+<body>
+    <h1>En este formulario ingresar las nuevas marcas que llegan a luxurycars</h1>
+    <form action="/gestionventas/formulario_marcas/" method="POST">{% csrf_token %}
+        <p>Marca: <input type="text" name="marca"></p>
+        <p>Serie o modelo: <input type="text" name="serie"></p>
+        <p>Año de fabricación: <input type="number" name="ano_fabricacion"></p>
+        <p>Pais de fabricación: <input type="text" name="pais_fabricacion"></p>
+    <input type="submit" value="Enviar">
+
+
+    </form>
+</body>
+</html>
