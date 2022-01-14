@@ -8,6 +8,16 @@
 </head>
 <body>
     <h1>En este formulario ingresar de marcas</h1>
-
+    
+    {% if miformulario.errors %}
+    <p style="color: red;">Estan mal los datos por favor revisar</p>
+    {% endif %}
+        
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{miformulario.as_table}}
+        </table>
+        <input type="submit" value="Registrar Marca">
+    </form>
 </body>
 </html>

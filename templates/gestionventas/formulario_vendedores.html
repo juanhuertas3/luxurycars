@@ -7,6 +7,17 @@
     <title>Formulario para ingreso de vendedores</title>
 </head>
 <body>
+    <h1>En este formulario ingresar nuevos vendedores</h1>
     
+    {% if miformulario3.errors %}
+    <p style="color: red;">Estan mal los datos por favor revisar</p>
+    {% endif %}
+        
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{miformulario3.as_table}}
+        </table>
+        <input type="submit" value="Registrar Vendedor">
+    </form>
 </body>
 </html>
