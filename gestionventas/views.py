@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from gestionventas.models import *
-from gestionventas.forms import Form_Marcas, Form_Ventas, Form_Vendedores
+from gestionventas.forms import *
 
 # vistas generales de la app.
 
