@@ -10,5 +10,7 @@ urlpatterns = [
     path('formulario_marcas/', views.form_marcas, name="formulario_marcas"),
     path('formulario_ventas/', views.form_ventas, name="formulario_ventas"),
     path('formulario_vendedores/', views.form_vendedores, name="formulario_vendedores"),
+    path('buscarmarca/', views.buscarmarca, name="buscarmarca"),
+    path('buscar/', views.buscar),
 
 ]

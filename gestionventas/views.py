@@ -65,3 +65,22 @@ def form_vendedores(request):
         miformulario3 = Form_Vendedores()
     
     return render (request, "gestionventas/formulario_vendedores.html", {"miformulario3":miformulario3})
+
+def buscarmarca(request):
+    
+    return render(request, "gestionventas/busquedamarca.html/")
+
+def buscar(request):
+
+    if request.GET ["marca"]:
+        
+        marca = request.GET['marca']
+        marcas = marcasvehiculo.objects.filter(marca__icontains=marca)
+
+        return render (request, "gestionventas/resultadosbusqueda.html", {"marca": marca})
+    
+    else:
+    
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)

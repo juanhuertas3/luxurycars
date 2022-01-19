@@ -30,3 +30,4 @@ En este proyecto se va aplicar todo lo aprendido en la utilización del framewor
 
 >> * "formulario de la clase venta el cual permite ingresar nuevos registros de vehiculos vendidos y negocios concretados en luxurycars latam" = http://localhost:8000/gestionventas/formulario_ventas/
 
+5. Se realizo un formulario de busqueda para consultar en la base de datos, si un registro de marca se encuentra o no en el modelo "marcavehiculo"; para acceder al formulario por favor ingresar a : http://localhost:8000/gestionventas/buscarmarca/ en esta ubicacion encontrara un campo de donde ingresar una marca de un vehiculo para realizar la comprobación si esta se encuentra o no dentro del modelo.
