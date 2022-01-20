@@ -74,13 +74,18 @@ def buscar(request):
 
     if request.GET ["marca"]:
         
-        marca = request.GET['marca']
-        marcas = marcasvehiculo.objects.filter(marca__icontains=marca)
+        marcas = request.GET["marca"]
+        marca = marcasvehiculo.objects.filter(marca__icontains=marcas)
 
         return render (request, "gestionventas/resultadosbusqueda.html", {"marca": marca})
-    
+        
     else:
     
         respuesta = "No enviaste datos"
 
     return HttpResponse(respuesta)
+
+def leermarcas(request):
+    marca = marcasvehiculo.objects.all()
+    contexto = {"marca": marca}
+    return render (request, "gestionventas/leermarcas.html", contexto)

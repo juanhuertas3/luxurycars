@@ -8,21 +8,21 @@
 </head>
 <body>
     
-    <p>Estamos buscando la marca: <h3>{{marca}}</h3></p>
+    <p><h3>Hemos encontrado los siguientes vehiculos:</h3></p>
     
-    {% if marcas %}
+    {% if marca %}
 
     <ul>
         
-        {% for marca in marcas %}
-            <li>{{marca.marcas}}</li>     
-
+        {% for m in marca %}
+           <li>{{m}}</li>     
+            
         {% endfor %}
             
     </ul>
     
     {% else %}
-    <p>No hay datos que concuerden con la información ingresada</p>
+    <p>No hay vehiculos que concuerden con la marca ingresada</p>
 
     {% endif %}
         

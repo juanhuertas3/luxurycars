@@ -9,8 +9,7 @@ class marcasvehiculo(models.Model):
     pais_fabricacion=models.CharField(max_length=25)
     
     def __str__(self):
-        texto= "{0}({1})"
-        return texto.format(self.marca, self.serie)
+        return f"{self.marca} - ({self.serie}) {self.ano_fabricacion}"
 
 class vendedore(models.Model):
     nombre_vendedor=models.CharField(max_length=35)
@@ -19,8 +18,7 @@ class vendedore(models.Model):
     sucursal=models.CharField(max_length=30)
 
     def __str__(self):
-        texto= "{0}{1}({2})"
-        return texto.format(self.nombre_vendedor, self.apellido_vendedor, self.email_vendedor)
+        return f"{self.nombre_vendedor} {self.apellido_vendedor} - ({self.email_vendedor})" 
 
 class venta(models.Model):
     vehiculo_vendido= models.CharField(max_length=30)
@@ -29,5 +27,4 @@ class venta(models.Model):
     garantia_kilometros= models.IntegerField()
 
     def __str__(self):
-        texto= "{0}({1})"
-        return texto.format(self.vehiculo_vendido, self.precio)   
+        return f"{self.vehiculo_vendido} - ($ {self.precio})"   
