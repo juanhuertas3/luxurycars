@@ -9,17 +9,8 @@ from gestionventas.forms import *
 def inicio(req):
     return render(req, "gestionventas/inicio.html")
 
-def marcas(req):
-    return render(req, "gestionventas/marcas.html") 
-
-def ventas(req):
-    return render(req, "gestionventas/ventas.html")
-
-def vendedores(req):
-    return render(req, "gestionventas/vendedores.html")
-
-def form_marcas(request):
-    miformulario = Form_Marcas(request.POST)
+def marcas(request):
+    miformulario = fMarcas(request.POST)
     print(miformulario)
 
     if miformulario.is_valid():
@@ -30,12 +21,12 @@ def form_marcas(request):
         return render(request, "gestionventas/marcas.html")
     
     else:
-        miformulario = Form_Marcas()
+        miformulario = fMarcas()
     
-    return render (request, "gestionventas/formulario_marcas.html", {"miformulario":miformulario})
+    return render (request, "gestionventas/marcas.html", {"miformulario":miformulario})
 
-def form_ventas(request):
-    miformulario2 = Form_Ventas(request.POST)
+def ventas(request):
+    miformulario2 = fVentas(request.POST)
     print(miformulario2)
 
     if miformulario2.is_valid():
@@ -46,12 +37,12 @@ def form_ventas(request):
         return render(request, "gestionventas/ventas.html")
     
     else:
-        miformulario2 = Form_Ventas()
+        miformulario2 = fVentas()
     
-    return render (request, "gestionventas/formulario_ventas.html", {"miformulario2":miformulario2})
+    return render (request, "gestionventas/ventas.html", {"miformulario2":miformulario2})
 
-def form_vendedores(request):
-    miformulario3 = Form_Vendedores(request.POST)
+def vendedores(request):
+    miformulario3 = fVendedores(request.POST)
     print(miformulario3)
 
     if miformulario3.is_valid():
@@ -62,9 +53,9 @@ def form_vendedores(request):
         return render(request, "gestionventas/vendedores.html")
     
     else:
-        miformulario3 = Form_Vendedores()
+        miformulario3 = fVendedores()
     
-    return render (request, "gestionventas/formulario_vendedores.html", {"miformulario3":miformulario3})
+    return render (request, "gestionventas/vendedores.html", {"miformulario3":miformulario3})
 
 def buscarmarca(request):
     
@@ -73,14 +64,12 @@ def buscarmarca(request):
 def buscar(request):
 
     if request.GET ["marca"]:
-        
         marcas = request.GET["marca"]
         marca = marcasvehiculo.objects.filter(marca__icontains=marcas)
 
         return render (request, "gestionventas/resultadosbusqueda.html", {"marca": marca})
         
     else:
-    
         respuesta = "No enviaste datos"
 
     return HttpResponse(respuesta)
@@ -89,3 +78,12 @@ def leermarcas(request):
     marca = marcasvehiculo.objects.all()
     contexto = {"marca": marca}
     return render (request, "gestionventas/leermarcas.html", contexto)
+
+def borrarmarca(request, id_marca):
+    marca= marcasvehiculo.objects.get(id=id_marca)
+    marca.delete()
+
+    marcas= marcasvehiculo.objects.all()
+    contexto={"marcas":marcas}
+
+    return render(request, "gestionventas/leermarcas.html", contexto)

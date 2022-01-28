@@ -7,11 +7,9 @@ urlpatterns = [
     path('marcas/', views.marcas, name="marcas"),
     path('ventas/', views.ventas, name="ventas"),
     path('vendedores/', views.vendedores, name="vendedores"),
-    path('formulario_marcas/', views.form_marcas, name="formulario_marcas"),
-    path('formulario_ventas/', views.form_ventas, name="formulario_ventas"),
-    path('formulario_vendedores/', views.form_vendedores, name="formulario_vendedores"),
     path('buscarmarca/', views.buscarmarca, name="buscarmarca"),
     path('buscar/', views.buscar),
     path('leermarcas/', views.leermarcas, name="leermarcas"),
-
+    path('borrarmarca/<id_marca>/', views.borrarmarca, name="borrarmarca"),
+    
 ]

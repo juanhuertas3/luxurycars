@@ -8,11 +8,18 @@
 </head>
 <body>
         
-    {% for m in marca  %}
-        
-        <ul> {{m}} </ul>
+    {% for m in marca  %}    
+        <li> {{m}} </li>
+    <button>
+        <a href= "{% url 'borrarmarca' m.id %}"> Eliminar </a>
+
+    </button>
 
     {% endfor %}
+
+    <br>
+    <br>
+    <a href="{% url 'marcas' %}">Agregar Marca</a>
         
 </body>
 </html>

@@ -2,5 +2,18 @@
     {% load static %}
 
 {% block contenidoquecambia %}
-    <p>Contenido particular de ventas</p>
+
+<h1>En este formulario ingresar las ventas</h1>
+    
+{% if miformulario2.errors %}
+<p style="color: red;">Estan mal los datos por favor revisar</p>
+{% endif %}
+    
+<form action="" method="POST">{% csrf_token %}
+    <table>
+        {{miformulario2.as_table}}
+    </table>
+    <input type="submit" value="Registrar Venta">
+</form>
+
 {% endblock contenidoquecambia %}
