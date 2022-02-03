@@ -87,3 +87,9 @@ def borrarmarca(request, id_marca):
     contexto={"marcas":marcas}
 
     return render(request, "gestionventas/leermarcas.html", contexto)
+
+def nosotros(req):
+    return render(req, "gestionventas/quienessomos.html")
+
+def blogpost(req):
+    return render(req, "gestionventas/blogpost.html") 
