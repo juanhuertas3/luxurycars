@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from gestionventas.models import *
 from gestionventas.forms import *
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 # vistas generales de la app.
 
 def inicio(req):
@@ -93,3 +94,26 @@ def nosotros(req):
 
 def blogpost(req):
     return render(req, "gestionventas/blogpost.html") 
+
+def loginrequest(request):
+
+    if request.method == "POST":
+            form = AuthenticationForm(request, data = request.POST)
+                    
+            if form.is_valid():
+                  usuario = form.cleaned_data.get('username')
+                  contra = form.cleaned_data.get('password')
+                  user = authenticate(username=usuario, password=contra)
+
+                  if user is not None:
+                    login(request, user)   
+                    return render(request,"gestionventas/inicio.html",  {"mensaje":f"Bienvenido {usuario}"} )
+                  
+                  else:                        
+                    return render(request,"gestionventas/inicio.html", {"mensaje":"Error, datos incorrectos"} )
+
+            else:                        
+                return render(request,"gestionventas/inicio.html" ,  {"mensaje":"Error, formulario erroneo"})
+    else:
+      form = AuthenticationForm()
+      return render(request,"gestionventas/login.html", {'form':form} )
