@@ -1,0 +1,20 @@
+{% extends 'gestionventas/inicio.html' %}  
+    {% load static %}
+
+{% block contenidoquecambia %}
+
+<h5>Detalle del usuario: <i>  {{ vendedore.nombre_vendedor }}</i> </h5>
+</br>
+
+<p><strong>NOMBRE:<i>  {{ vendedore.nombre_vendedor }}</i></strong></p>
+<p><strong>APELLIDO:<i>  {{ vendedore.apellido_vendedor }}</i></strong></p>
+<p><strong>EMAIL:<i>  {{ vendedore.email_vendedor }}</i></strong></p>
+<p><strong>SUCURSAL:<i>  {{ vendedore.sucursal }}</i></strong></p>
+
+<p>
+    <a href="{% url 'listar'  %}">Regresar</a>
+</p>
+
+{% endblock contenidoquecambia %}
+            
+        <!-- FIN CONTENIDO DINAMICO DE PAGINA-->

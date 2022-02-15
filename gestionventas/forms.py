@@ -17,3 +17,4 @@ class fVendedores(forms.Form):
     apellido_vendedor=forms.CharField()
     email_vendedor=forms.EmailField()
     sucursal=forms.CharField()
+

@@ -1,0 +1,20 @@
+{% extends 'gestionventas/inicio.html' %}  
+    {% load static %}
+
+{% block contenidoquecambia %}
+
+<h5>Modificar Vendedor</h5>
+</br>
+<form method="post"> {% csrf_token %}
+    <table>
+        {{ form.as_p }}
+    </table>
+    
+    <input type="submit" value="Modificar" />
+</form>
+<br></br>
+<a href="{% url 'listar' %}">||| Volver a Empleados |||</a>
+
+{% endblock contenidoquecambia %}
+            
+        <!-- FIN CONTENIDO DINAMICO DE PAGINA-->

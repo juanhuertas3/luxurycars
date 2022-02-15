@@ -27,8 +27,8 @@
                             <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Quienes Somos</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'marcas' %}">Marcas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'vendedores' %}">Vendedores</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'ventas' %}">Ventas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -36,6 +36,8 @@
             <!-- INICIO CONTENIDO DINAMICO DE PAGINA-->
             
                 {% block contenidoquecambia %}
+
+                <strong>{{ mensaje }}</strong>
                             <!-- Header-->
             <header class="bg-dark py-5">
                 <div class="container px-5">

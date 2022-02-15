@@ -1,0 +1,21 @@
+{% extends 'gestionventas/inicio.html' %}  
+    {% load static %}
+
+{% block contenidoquecambia %}
+
+<h5>Eliminar Usuario:</h5>
+</br>
+
+<form method="POST"> {% csrf_token %}
+
+    <p><strong>Esta completamente seguro que desea eliminar este empleado"{{ object }}"?</strong></p>
+
+<input type="submit" value="Estoy Seguro Borrar Empleado">
+</form>
+
+<br></br>
+<a href="{% url 'listar' %}">||| Volver a Empleados |||</a>
+
+{% endblock contenidoquecambia %}
+            
+        <!-- FIN CONTENIDO DINAMICO DE PAGINA-->

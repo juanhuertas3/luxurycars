@@ -1,0 +1,30 @@
+{% extends 'gestionventas/inicio.html' %}  
+    {% load static %}
+
+{% block contenidoquecambia %}
+
+<h5>Lista de Vendedores</h5>
+</br>
+<ul>
+    {% for vendedore in object_list %}
+
+    <li>        
+                <p><strong>NOMBRE: {{ vendedore.nombre_vendedor }} </strong></p>
+                <p><strong>APELLIDO: {{ vendedore.apellido_vendedor }} </strong></p>
+                
+                <p> 
+                    <a href="{% url 'Detalle' vendedore.id %}">Ver</a> | 
+                    <a href="{% url 'Modificar' vendedore.id %}">Editar</a> | 
+                    <a href="{% url 'Eliminar' vendedore.id %}">Borrar</a> 
+                
+                </p> 
+
+        {% endfor %}
+    </li>
+        
+</ul>
+<a href="{% url 'vendedores' %}"> || Nuevo Empleado ||</a>  
+
+{% endblock contenidoquecambia %}
+            
+        <!-- FIN CONTENIDO DINAMICO DE PAGINA-->

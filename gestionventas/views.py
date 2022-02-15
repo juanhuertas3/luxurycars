@@ -1,9 +1,12 @@
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView 
+from django.views.generic import ListView
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from gestionventas.models import *
 from gestionventas.forms import *
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 # vistas generales de la app.
 
@@ -51,7 +54,7 @@ def vendedores(request):
         vendedor = vendedore (nombre_vendedor=info['nombre_vendedor'], apellido_vendedor=info['apellido_vendedor'], email_vendedor=info['email_vendedor'], sucursal=info['sucursal'],)
         vendedor.save()
 
-        return render(request, "gestionventas/vendedores.html")
+        return render(request, "gestionventas/vendedores.html/")
     
     else:
         miformulario3 = fVendedores()
@@ -95,25 +98,72 @@ def nosotros(req):
 def blogpost(req):
     return render(req, "gestionventas/blogpost.html") 
 
-def loginrequest(request):
+class ListarVendedores(ListView):
+    model= vendedore
+    template_name="gestionventas/listar.html" 
 
-    if request.method == "POST":
+
+class DetalleVendedores(DetailView):
+    model= vendedore
+    template_name="gestionventas/detalles.html"
+
+class CrearVendedores(CreateView):
+    model= vendedore
+    success_url="/gestionventas/listaVendedores/"
+    fields=["nombre_vendedor", "apellido_vendedor", "email_vendedor", "sucursal"] 
+    template_name ="gestionventas/vendedores.html"
+
+class ModificarVendedores(UpdateView):
+    model= vendedore
+    success_url="/gestionventas/listaVendedores/"
+    fields=['nombre_vendedor', 'apellido_vendedor', 'email_vendedor', 'sucursal']
+    template_name ="gestionventas/editar.html"
+
+class BorrarVendedores(DeleteView):
+    model= vendedore
+    success_url="/gestionventas/listaVendedores/"
+    template_name ="gestionventas/borrar.html"
+
+def login_request(request):
+
+    if (request.method == "POST"):
+            
             form = AuthenticationForm(request, data = request.POST)
                     
             if form.is_valid():
-                  usuario = form.cleaned_data.get('username')
-                  contra = form.cleaned_data.get('password')
-                  user = authenticate(username=usuario, password=contra)
+                  data = form.cleaned_data
+                    
+                  user = authenticate(username=data['username'], password=data['password'])
 
                   if user is not None:
                     login(request, user)   
-                    return render(request,"gestionventas/inicio.html",  {"mensaje":f"Bienvenido {usuario}"} )
+                    
+                    return render(request,"gestionventas/inicio.html",  {"mensaje":f"Bienvenido {user.get_username()} Que tal tu dia 😎"} )
                   
-                  else:                        
+                  else:
+
                     return render(request,"gestionventas/inicio.html", {"mensaje":"Error, datos incorrectos"} )
 
             else:                        
-                return render(request,"gestionventas/inicio.html" ,  {"mensaje":"Error, formulario erroneo"})
+                return render(request,"gestionventas/inicio.html" ,  {"mensaje":"Error, El usuario no existe o la contraseña esta mal 😥"})
     else:
       form = AuthenticationForm()
       return render(request,"gestionventas/login.html", {'form':form} )
+
+def register(request):
+
+      if (request.method == "POST"):
+
+            form = UserCreationForm(request.POST)
+            
+            if form.is_valid():
+
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"gestionventas/inicio.html",   {"mensaje": "Se ha creado exitosamente su usuario, Bienvenido a bordo marinero 😎"} )
+
+      else:
+            form = UserCreationForm()       
+         
+
+      return render(request,"gestionventas/registro.html" ,  {"form":form})
