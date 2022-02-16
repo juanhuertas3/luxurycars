@@ -8,6 +8,9 @@ from gestionventas.models import *
 from gestionventas.forms import *
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 # vistas generales de la app.
 
 def inicio(req):
@@ -45,6 +48,7 @@ def ventas(request):
     
     return render (request, "gestionventas/ventas.html", {"miformulario2":miformulario2})
 
+@login_required
 def vendedores(request):
     miformulario3 = fVendedores(request.POST)
     print(miformulario3)
@@ -54,7 +58,7 @@ def vendedores(request):
         vendedor = vendedore (nombre_vendedor=info['nombre_vendedor'], apellido_vendedor=info['apellido_vendedor'], email_vendedor=info['email_vendedor'], sucursal=info['sucursal'],)
         vendedor.save()
 
-        return render(request, "gestionventas/vendedores.html/")
+        return render(request, "gestionventas/vendedores.html")
     
     else:
         miformulario3 = fVendedores()
@@ -98,22 +102,22 @@ def nosotros(req):
 def blogpost(req):
     return render(req, "gestionventas/blogpost.html") 
 
-class ListarVendedores(ListView):
+class ListarVendedores(LoginRequiredMixin, ListView):
     model= vendedore
     template_name="gestionventas/listar.html" 
 
 
-class DetalleVendedores(DetailView):
+class DetalleVendedores(LoginRequiredMixin, DetailView):
     model= vendedore
     template_name="gestionventas/detalles.html"
 
-class CrearVendedores(CreateView):
+class CrearVendedores(LoginRequiredMixin, CreateView):
     model= vendedore
     success_url="/gestionventas/listaVendedores/"
     fields=["nombre_vendedor", "apellido_vendedor", "email_vendedor", "sucursal"] 
     template_name ="gestionventas/vendedores.html"
 
-class ModificarVendedores(UpdateView):
+class ModificarVendedores(LoginRequiredMixin, UpdateView):
     model= vendedore
     success_url="/gestionventas/listaVendedores/"
     fields=['nombre_vendedor', 'apellido_vendedor', 'email_vendedor', 'sucursal']
