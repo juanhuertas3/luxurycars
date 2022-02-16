@@ -32,7 +32,7 @@
                             <li class="btn btn-secondary"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>    
                             {% endif %}
                             {% if request.user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link">Hi {{ user.username }} 😉</a></li>
+                            <li class="nav-item"><a class="nav-link">Hi {{ user.username }}😉<img height="30px" src="{{url}}"/></a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">SALIR</a></li>    
                             {% endif %}                            
                         </ul>
@@ -43,7 +43,8 @@
             
                 {% block contenidoquecambia %}
 
-                <strong>{{ mensaje }}</strong>
+                <strong>{{ mensaje }}</strong> 
+
                             <!-- Header-->
             <header class="bg-dark py-5">
                 <div class="container px-5">

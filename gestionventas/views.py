@@ -11,7 +11,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-### INSTANCIAS DE PAGINAS Y SECCIONES DE LA WEB
+### COMPONENTE DE PAGINAS Y SECCIONES DE LA WEB
 def inicio(req):
     return render(req, "gestionventas/inicio.html")
 
@@ -24,7 +24,7 @@ def blogpost(req):
 def marcas(request):    
     return render (request, "gestionventas/marcas.html")
 
-### INSTANCIA PARA CREAR NUEVOS VENDEDORES EN EL MODELO
+### COMPONENTE PARA CREAR NUEVOS VENDEDORES EN EL MODELO
 @login_required
 def vendedores(request):
     miformulario3 = fVendedores(request.POST)
@@ -42,7 +42,7 @@ def vendedores(request):
     
     return render (request, "gestionventas/vendedores.html", {"miformulario3":miformulario3})
 
-### INSTANCIAS DEL CRUD COMPLETO
+### COMPONENTES DEL CRUD COMPLETO
 class ListarVendedores(LoginRequiredMixin, ListView):
     model= vendedore
     template_name="gestionventas/listar.html" 
@@ -68,7 +68,7 @@ class BorrarVendedores(DeleteView):
     success_url="/gestionventas/listaVendedores/"
     template_name ="gestionventas/borrar.html"
 
-### INSTANCIA DE LOGIN
+### COMPONENTE DE LOGIN
 def login_request(request):
 
     if (request.method == "POST"):
@@ -81,9 +81,11 @@ def login_request(request):
                   user = authenticate(username=data['username'], password=data['password'])
 
                   if user is not None:
-                    login(request, user)   
+                    login(request, user) 
+
+                    avatares = Avatar.objects.filter(user=request.user.id)  
                     
-                    return render(request,"gestionventas/inicio.html",  {"mensaje":f"Bienvenido {user.get_username()} Que tal tu dia 😎"} )
+                    return render(request,"gestionventas/inicio.html",  {"mensaje":f"Bienvenido {user.get_username()} Que tal tu dia 😎", "url":avatares[0].imagen.url})
                   
                   else:
 
@@ -95,7 +97,7 @@ def login_request(request):
       form = AuthenticationForm()
       return render(request,"gestionventas/login.html", {'form':form} )
 
-### INSTANCIA PARA CREAR USUARIOS
+### COMPONENTE PARA CREAR USUARIOS
 def register(request):
 
       if (request.method == "POST"):
@@ -114,7 +116,7 @@ def register(request):
 
       return render(request,"gestionventas/registro.html" ,  {"form":form})
 
-### INSTANCIA PARA EDITAR PERFIL
+### COMPONENTE PARA EDITAR PERFIL
 @login_required
 def editarPerfil(request):
 
