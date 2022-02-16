@@ -4,9 +4,9 @@ En este proyecto se va aplicar todo lo aprendido en la utilización del framewor
 
 ### PARTICIPANTES EN EL PROYECTO
 
-* JUAN HUERTAS
+* **JUAN HUERTAS**
 
-Tenia 2 compañeros mas pero no fue posible contactarlos de nuevo, asi que decidi realizar el proyecto solo, realizando la totalidad del mismo en exclusividad. 
+Tenia 2 compañeros mas pero no fue posible contactarlos, asi que decidi realizar el proyecto solo, realizando la totalidad del mismo en exclusividad. hubiera sido interesante poder trabajar con otros compañeros en un mismo proyecto, pero es dificil encontrar personas comprometidas y responsables, sera en una proxima oportunidad.  
 
 ## IMPLEMENTACIÓN DE FUNCIONALIDADES.
 
@@ -26,8 +26,10 @@ Tenia 2 compañeros mas pero no fue posible contactarlos de nuevo, asi que decid
 
 ## MODIFICACIONES Y CONSIGNAS PROYECTO FINAL
 
-1. Tal cual como se solicita se crea una seccion llamada nosotros que esta ubicada en http://localhost:8000/gestionventas/nosotros/ en esta seccion se encuentra información sobre el proyecto y sus creadores, de igual forma una seccion llamada marcas que tiene acceso a algunos de los productos de luxurycars ubicada en http://localhost:8000/gestionventas/marcas/ 
+5. Tal cual como se solicita se crea una seccion llamada nosotros que esta ubicada en http://localhost:8000/gestionventas/nosotros/ en esta seccion se encuentra información sobre el proyecto y sus creadores, de igual forma una seccion llamada marcas que tiene acceso a algunos de los productos de luxurycars ubicada en http://localhost:8000/gestionventas/marcas/ 
 
-2. Se solicita realizar un CRUD completo en un modelo que tenga la capacidad de (Crear, Leer, Modificar, Borrar nuevos registros), en este caso decidi crear el crud bajo el modelo de clase Vendedore la cual como lo explique en los parrafos anteriores, nos permite agregar, listar y ver todos los registros de empleados de luxurycars, para ingresar debemos acceder a http://localhost:8000/gestionventas/listaVendedores como medida de seguridad se puede acceder unicamente estando logeado.
+6. Se solicita realizar un CRUD completo en un modelo que tenga la capacidad de (Crear, Leer, Modificar, Borrar nuevos registros), en este caso decidi crear el crud bajo el modelo de clase Vendedore la cual como lo explique en los parrafos anteriores, nos permite agregar, listar y ver todos los registros de empleados de luxurycars, para ingresar debemos acceder a http://localhost:8000/gestionventas/listaVendedores como medida de seguridad se puede acceder unicamente estando logeado.
 
-3. Se agrego un sistema de autentificación o login robusto para acceder de forma segura a secciones privadas en la pagina web de luxurycars, el sistema esta compuesto de un login de acceso para usuarios registrados ubicado en http://localhost:8000/gestionventas/login/ y un sistema de registro ubicado en http://localhost:8000/gestionventas/registrar/ ambos realizan comprobación en base de datos y en caso de login informa error cuando se ingresa un usuario erroneo y un mensaje de exito cuando es el usuario registrado se logea de forma exitosa.   
+7. Se agrego un sistema de autentificación o login robusto para acceder de forma segura a secciones privadas en la pagina web de luxurycars, el sistema esta compuesto de un login de acceso para usuarios registrados ubicado en http://localhost:8000/gestionventas/login/ y un sistema de registro ubicado en http://localhost:8000/gestionventas/registrar/ ambos realizan comprobación en base de datos y en caso de login informa error cuando se ingresa un usuario erroneo y un mensaje de exito cuando es el usuario registrado se logea de forma exitosa, y por ultimo un logout que permite cerrar sesion actual del usuario que este logeado ubicado en http://localhost:8000/gestionventas/logout/  
+
+8. Se agrega un sistema de modificación de perfil de usuarios registrados, para poder modificar el usuario se requiere login, para acceder ingresamos a http://localhost:8000/gestionventas/editarperfil/ y asi podremos modificar campos como (nombre, apellido, email, contraseña, imagen de avatar) del usuario registrado.

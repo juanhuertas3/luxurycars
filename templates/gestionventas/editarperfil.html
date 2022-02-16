@@ -1,0 +1,18 @@
+{% extends 'gestionventas/inicio.html' %}  
+    {% load static %}
+
+{% block contenidoquecambia %}
+
+<h5>En este formulario puedes editar tu perfil {{ usuario }}</h5>
+</br>        
+<form action="" method="POST">{% csrf_token %}
+    <table>
+        {{ miFormulario.as_table }}
+    </table>
+    <br></br>
+    <input type="submit" value="Modificar Mi Usuario">    
+</form>
+</br>
+<a href="{% url 'listar' %}">||| Volver a Empleados |||</a>
+
+{% endblock contenidoquecambia %}

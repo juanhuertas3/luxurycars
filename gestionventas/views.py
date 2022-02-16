@@ -11,43 +11,20 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-# vistas generales de la app.
-
+### INSTANCIAS DE PAGINAS Y SECCIONES DE LA WEB
 def inicio(req):
     return render(req, "gestionventas/inicio.html")
 
-def marcas(request):
-    miformulario = fMarcas(request.POST)
-    print(miformulario)
+def nosotros(req):
+    return render(req, "gestionventas/quienessomos.html")
 
-    if miformulario.is_valid():
-        info = miformulario.cleaned_data
-        marca = marcasvehiculo (marca=info['marca'], serie=info['serie'], ano_fabricacion=info['ano_fabricacion'], pais_fabricacion=info['pais_fabricacion'],)
-        marca.save()
+def blogpost(req):
+    return render(req, "gestionventas/blogpost.html") 
 
-        return render(request, "gestionventas/marcas.html")
-    
-    else:
-        miformulario = fMarcas()
-    
-    return render (request, "gestionventas/marcas.html", {"miformulario":miformulario})
+def marcas(request):    
+    return render (request, "gestionventas/marcas.html")
 
-def ventas(request):
-    miformulario2 = fVentas(request.POST)
-    print(miformulario2)
-
-    if miformulario2.is_valid():
-        info = miformulario2.cleaned_data
-        ventas = venta (vehiculo_vendido=info['vehiculo_vendido'], precio=info['precio'], garantia_tiempo=info['garantia_tiempo'], garantia_kilometros=info['garantia_kilometros'],)
-        ventas.save()
-
-        return render(request, "gestionventas/ventas.html")
-    
-    else:
-        miformulario2 = fVentas()
-    
-    return render (request, "gestionventas/ventas.html", {"miformulario2":miformulario2})
-
+### INSTANCIA PARA CREAR NUEVOS VENDEDORES EN EL MODELO
 @login_required
 def vendedores(request):
     miformulario3 = fVendedores(request.POST)
@@ -65,47 +42,10 @@ def vendedores(request):
     
     return render (request, "gestionventas/vendedores.html", {"miformulario3":miformulario3})
 
-def buscarmarca(request):
-    
-    return render(request, "gestionventas/busquedamarca.html/")
-
-def buscar(request):
-
-    if request.GET ["marca"]:
-        marcas = request.GET["marca"]
-        marca = marcasvehiculo.objects.filter(marca__icontains=marcas)
-
-        return render (request, "gestionventas/resultadosbusqueda.html", {"marca": marca})
-        
-    else:
-        respuesta = "No enviaste datos"
-
-    return HttpResponse(respuesta)
-
-def leermarcas(request):
-    marca = marcasvehiculo.objects.all()
-    contexto = {"marca": marca}
-    return render (request, "gestionventas/leermarcas.html", contexto)
-
-def borrarmarca(request, id_marca):
-    marca= marcasvehiculo.objects.get(id=id_marca)
-    marca.delete()
-
-    marcas= marcasvehiculo.objects.all()
-    contexto={"marcas":marcas}
-
-    return render(request, "gestionventas/leermarcas.html", contexto)
-
-def nosotros(req):
-    return render(req, "gestionventas/quienessomos.html")
-
-def blogpost(req):
-    return render(req, "gestionventas/blogpost.html") 
-
+### INSTANCIAS DEL CRUD COMPLETO
 class ListarVendedores(LoginRequiredMixin, ListView):
     model= vendedore
     template_name="gestionventas/listar.html" 
-
 
 class DetalleVendedores(LoginRequiredMixin, DetailView):
     model= vendedore
@@ -128,6 +68,7 @@ class BorrarVendedores(DeleteView):
     success_url="/gestionventas/listaVendedores/"
     template_name ="gestionventas/borrar.html"
 
+### INSTANCIA DE LOGIN
 def login_request(request):
 
     if (request.method == "POST"):
@@ -154,6 +95,7 @@ def login_request(request):
       form = AuthenticationForm()
       return render(request,"gestionventas/login.html", {'form':form} )
 
+### INSTANCIA PARA CREAR USUARIOS
 def register(request):
 
       if (request.method == "POST"):
@@ -171,3 +113,28 @@ def register(request):
          
 
       return render(request,"gestionventas/registro.html" ,  {"form":form})
+
+### INSTANCIA PARA EDITAR PERFIL
+@login_required
+def editarPerfil(request):
+
+      usuario = request.user
+     
+      if (request.method == 'POST'):
+            miFormulario = UserEditForm(request.POST) 
+            if miFormulario.is_valid(): 
+
+                  informacion = miFormulario.cleaned_data
+            
+                  usuario.email = informacion['email']
+                  usuario.password1 = informacion['password1']
+                  usuario.password2 = informacion['password2']
+                  usuario.last_name = informacion['last_name']
+                  usuario.first_name = informacion['first_name']
+                  usuario.save()
+
+                  return render(request, "gestionventas/inicio.html") 
+      else: 
+            miFormulario= UserEditForm(initial={'email':usuario.email, 'last_name':usuario.last_name, 'first_name':usuario.first_name}) 
+
+      return render(request, "gestionventas/editarperfil.html", {"miFormulario":miFormulario, "usuario":usuario})

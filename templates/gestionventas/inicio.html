@@ -27,9 +27,14 @@
                             <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Quienes Somos</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'marcas' %}">Marcas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'registrar' %}">Registrar</a></li>
-                            
+                            {% if not request.user.is_authenticated %}
+                            <li class="btn btn-secondary"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>    
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link">Hi {{ user.username }} 😉</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">SALIR</a></li>    
+                            {% endif %}                            
                         </ul>
                     </div>
                 </div>
