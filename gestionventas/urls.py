@@ -23,6 +23,6 @@ urlpatterns = [
     path('login/', views.login_request, name="login"),
     path('registrar/', views.register, name='registrar'), 
     path('logout/', LogoutView.as_view(template_name='gestionventas/logout.html'), name='logout'), 
-    path('editarperfil/', views.editarPerfil, name='editarperfil'), 
+    path('perfil/', views.editarPerfil, name='editarperfil'), 
 
 ]

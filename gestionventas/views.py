@@ -139,4 +139,4 @@ def editarPerfil(request):
       else: 
             miFormulario= UserEditForm(initial={'email':usuario.email, 'last_name':usuario.last_name, 'first_name':usuario.first_name}) 
 
-      return render(request, "gestionventas/editarperfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+      return render(request, "gestionventas/perfil.html", {"miFormulario":miFormulario, "usuario":usuario})

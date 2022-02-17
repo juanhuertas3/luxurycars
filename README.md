@@ -8,6 +8,10 @@ En este proyecto se va aplicar todo lo aprendido en la utilización del framewor
 
 Tenia 2 compañeros mas pero no fue posible contactarlos, asi que decidi realizar el proyecto solo, realizando la totalidad del mismo en exclusividad. hubiera sido interesante poder trabajar con otros compañeros en un mismo proyecto, pero es dificil encontrar personas comprometidas y responsables, sera en una proxima oportunidad.  
 
+### URL DE VIDEO EXPLICATORIO DEL PROYECTO
+
+        https://youtu.be/sxxAipU20VY
+
 ## IMPLEMENTACIÓN DE FUNCIONALIDADES.
 
 1. El directorio principal en donde esta instalado el proyecto es: localhost:8000/gestionventas o 127.0.0.1:8000/gestionventas; para un acceso mas sencillo y directo y al ser una unica aplicación se habilito la redireccion automatica pudiendo ingresar directamente al proyecto sin necesidad de digitar la url completa, solo con http://localhost:8000/ o http://127.0.0.1:8000
@@ -32,6 +36,6 @@ Tenia 2 compañeros mas pero no fue posible contactarlos, asi que decidi realiza
 
 7. Se agrego un sistema de autentificación o login robusto para acceder de forma segura a secciones privadas en la pagina web de luxurycars, el sistema esta compuesto de un login de acceso para usuarios registrados ubicado en http://localhost:8000/gestionventas/login/ y un sistema de registro ubicado en http://localhost:8000/gestionventas/registrar/ ambos realizan comprobación en base de datos y en caso de login informa error cuando se ingresa un usuario erroneo y un mensaje de exito cuando es el usuario registrado se logea de forma exitosa, y por ultimo un logout que permite cerrar sesion actual del usuario que este logeado ubicado en http://localhost:8000/gestionventas/logout/  
 
-8. Se agrega un sistema de modificación de perfil de usuarios registrados, para poder modificar el usuario se requiere login, para acceder ingresamos a http://localhost:8000/gestionventas/editarperfil/ y asi podremos modificar campos como (nombre, apellido, email, contraseña, imagen de avatar) del usuario registrado.
+8. Se agrega un sistema de modificación de perfil de usuarios registrados, para poder modificar el usuario se requiere login, para acceder ingresamos a http://localhost:8000/gestionventas/perfil/ y asi podremos modificar campos como (nombre, apellido, email, contraseña, imagen de avatar) del usuario registrado.
 
 9. Se agrega modelo con función de avatar el cual permite asignar una imagen a los usuarios, almacenando las imagenes en la carpeta media y utilizandolo al momento de iniciar sesion, se puede observar en models y en la base de datos la información ingresada. 
