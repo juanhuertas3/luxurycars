@@ -26,6 +26,8 @@ Tenia 2 compañeros mas pero no fue posible contactarlos, asi que decidi realiza
 
 >> * class venta: esta clase del modelo fue creada para almacenar en la base de datos 4 atributos ("vehiculo_vendido, precio, garantia_tiempo, garantia_kilometros") permite la asignación y registro de las ventas realizadas de vehoculos en luxurycars latam.
 
+>> * class avatar: esta clase del modelo fue creada para almacenar en la base de datos 2 atributos("user", "imagen") permite la asignación y registro de un avatar de activación a los usuarios registrados en Luxurycars Latam.
+
 4. la pagina web cuenta con acceso libre sin login a 3 secciones (pagina de inicio, nosotros, marcas) 
 
 ## MODIFICACIONES Y CONSIGNAS PROYECTO FINAL
