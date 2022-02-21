@@ -6,8 +6,6 @@ En este proyecto se va aplicar todo lo aprendido en la utilización del framewor
 
 * **JUAN HUERTAS**
 
-Tenia 2 compañeros mas pero no fue posible contactarlos, asi que decidi realizar el proyecto solo, realizando la totalidad del mismo en exclusividad. hubiera sido interesante poder trabajar con otros compañeros en un mismo proyecto, pero es dificil encontrar personas comprometidas y responsables, sera en una proxima oportunidad.  
-
 ### URL DE VIDEO EXPLICATORIO DEL PROYECTO
 
         https://youtu.be/sxxAipU20VY
